@@ -1,0 +1,15 @@
+// Базовый размер шрифта для rem mixin
+$base-font-size: 16px !default;
+
+// Перевод PX в REM
+@function rem($pixels, $base: $base-font-size) {
+    @if math.is-unitless($pixels) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if math.is-unitless($base) {
+        $base: $base * 1px;
+    }
+
+    @return math.div($pixels, $base) * 1rem;
+}
