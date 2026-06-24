@@ -5,7 +5,12 @@ export async function fetchAreasByIds(
   ids: string[],
   signal?: AbortSignal
 ): Promise<PaginatedResponse<Area>> {
-  const url = `${AREAS_URL}?id__in=${ids.join(',')}`;
+  const params = new URLSearchParams();
+  for (const id of ids) {
+    params.append('id__in', id);
+  }
+
+  const url = `${AREAS_URL}?${params.toString()}`;
   const response = await fetch(url, { signal });
 
   if (!response.ok) {
