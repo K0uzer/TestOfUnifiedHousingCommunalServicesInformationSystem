@@ -1,12 +1,14 @@
 import './App.css';
-import { Table } from './components';
+import { Table, Pagination } from './components';
 
 function App() {
+
   return (
     <section>
       <h1>Список счетчиков</h1>
 
       <Table />
+      <Pagination />
     </section>
   );
 }
