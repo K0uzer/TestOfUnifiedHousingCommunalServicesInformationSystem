@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { URI } from '../Constans';
+import { URI } from '../constans';
 
 const useGetContent = (limit: number = 20) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const ELEMENT_LIMIT_STRING = `/?limit=${limit}&&offset`;
+  const ELEMENT_LIMIT = `/?limit=${limit}&&offset`;
 
   useEffect(() => {
     let isMounted = true;
@@ -16,7 +16,7 @@ const useGetContent = (limit: number = 20) => {
       setError(null);
 
       try {
-        const response = await fetch(URI + ELEMENT_LIMIT_STRING, {
+        const response = await fetch(URI + ELEMENT_LIMIT, {
           signal: abortController.signal,
         });
 
@@ -25,7 +25,9 @@ const useGetContent = (limit: number = 20) => {
         }
 
         const json = await response.json();
+
         console.log(json);
+
         if (isMounted) {
           setData(json);
         }
@@ -49,7 +51,7 @@ const useGetContent = (limit: number = 20) => {
       isMounted = false;
       abortController.abort();
     };
-  }, [ELEMENT_LIMIT_STRING, limit]);
+  }, [ELEMENT_LIMIT, limit]);
 
   return { data, loading, error };
 };
