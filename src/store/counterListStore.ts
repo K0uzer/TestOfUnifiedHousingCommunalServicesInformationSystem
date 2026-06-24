@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import {} from '../constans';
+
 
 class CounterListStore {
   list: string[] = [];
