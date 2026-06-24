@@ -1,36 +1,99 @@
 .table-container {
-  border: 1px solid black;
-  border-radius: 5px;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  background: #fff;
 }
+
 .scroll-wrapper {
-  max-height: 500px;
-  max-width: 1200px;
-  overflow-y: auto;
-  overflow-x: auto;
+  max-height: 520px;
+  overflow: auto;
 }
+
 .table {
+  width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
-.table__head {
-}
+
 .table__header {
-  z-index: 1;
   position: sticky;
   top: 0;
-  background-color: white;
-  padding: 0 10px 0 10px;
+  z-index: 1;
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: 600;
+  background: #f2f5f8;
+  border-bottom: 1px solid #dfe3e8;
+  white-space: nowrap;
 }
-.table__body {
+
+.table__header--actions {
+  width: 48px;
 }
+
 .table__row {
   &:hover {
-    background-color: #cbd6e4;
+    background-color: #e8f2ff;
+
+    .table__delete {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }
+
 .table__data {
-  //   border: 1px solid black;
-  padding: 5px;
+  padding: 10px;
+  border-bottom: 1px solid #f0f3f6;
+  vertical-align: middle;
+  word-break: break-word;
 }
-.table__foot {
-  height: 20px;
+
+.table__data--actions {
+  width: 48px;
+  text-align: center;
+}
+
+.table__type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table__type-icon {
+  flex-shrink: 0;
+}
+
+.table__delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #757987;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: #fde8e8;
+    color: #f21b1b;
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.5;
+  }
+}
+
+.table-status {
+  margin: 0 0 12px;
+  padding: 12px 16px;
+
+  &--error {
+    color: #f21b1b;
+  }
 }
