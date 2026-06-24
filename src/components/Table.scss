@@ -1,0 +1,36 @@
+.table-container {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.scroll-wrapper {
+  max-height: 500px;
+  max-width: 1200px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.table {
+  border-collapse: collapse;
+}
+.table__head {
+}
+.table__header {
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 0 10px 0 10px;
+}
+.table__body {
+}
+.table__row {
+  &:hover {
+    background-color: #cbd6e4;
+  }
+}
+.table__data {
+  //   border: 1px solid black;
+  padding: 5px;
+}
+.table__foot {
+  height: 20px;
+}
