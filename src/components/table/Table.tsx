@@ -11,9 +11,9 @@ import { formatAddress } from '@utils/formatAddress';
 import { getMeterTypeKey } from '@utils/getMeterTypeKey';
 import { Pagination } from '../Pagination';
 
-import iconGvs from '@assets/Icon-gvs.svg';
-import iconHvs from '@assets/Icon-hvs.svg';
-import trashIcon from '@assets/trash.svg';
+import iconGvs from '@assets/Icon-gvs.svg?url';
+import iconHvs from '@assets/Icon-hvs.svg?url';
+import trashIcon from '@assets/trash.svg?url';
 
 import './Table.scss';
 
@@ -31,8 +31,6 @@ const Table = observer(() => {
       <p className="table-status table-status--error">{meterStore.error}</p>
     );
   }
-
-  console.log(iconHvs);
 
   return (
     <div className="table-container">
