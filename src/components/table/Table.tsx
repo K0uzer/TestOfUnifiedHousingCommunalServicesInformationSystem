@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import { TableHead } from './TableHead';
+import { DeleteIcon } from './DeleteIcon';
 import { meterStore } from '@store/meterStore';
 import { formatMeterType } from '@utils/formatMeterType';
 import { formatDate } from '@utils/formatDate';
@@ -15,11 +16,12 @@ import { TABLE_COLUMNS } from '@constans';
 
 import iconGvs from '@assets/Icon-gvs.svg?url';
 import iconHvs from '@assets/Icon-hvs.svg?url';
-import trashIcon from '@assets/trash.svg?url';
 
 import './Table.scss';
 
 const Table = observer(() => {
+  const [pressedDeleteId, setPressedDeleteId] = useState<string | null>(null);
+
   useEffect(() => {
     meterStore.init();
   }, []);
@@ -102,17 +104,20 @@ const Table = observer(() => {
                   <td className={`table__data ${getTableDataClass('actions')}`}>
                     <button
                       type="button"
-                      className="table__delete"
+                      className={`table__delete${
+                        pressedDeleteId === item.id
+                          ? ' table__delete--pressed'
+                          : ''
+                      }`}
                       aria-label="Удалить счётчик"
                       disabled={meterStore.deletingId === item.id}
+                      onPointerDown={() => setPressedDeleteId(item.id)}
+                      onPointerUp={() => setPressedDeleteId(null)}
+                      onPointerLeave={() => setPressedDeleteId(null)}
+                      onPointerCancel={() => setPressedDeleteId(null)}
                       onClick={() => meterStore.removeMeter(item.id)}
                     >
-                      <img
-                        src={trashIcon}
-                        width={13}
-                        height={14}
-                        alt="иконка"
-                      />
+                      <DeleteIcon />
                     </button>
                   </td>
                 </tr>
