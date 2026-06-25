@@ -9,6 +9,8 @@ export const AREAS_URL = `${API_BASE}/areas/`;
 export const PAGE_SIZE = 20;
 
 export const METER_TYPE_LABELS: Record<string, string> = {
-    ColdWaterAreaMeter: 'ХВС',
-    HotWaterAreaMeter: 'ГВС',
+  ColdWaterAreaMeter: 'ХВС',
+  HotWaterAreaMeter: 'ГВС',
 };
+
+export const MAX_VISIBLE_PAGES = 7;

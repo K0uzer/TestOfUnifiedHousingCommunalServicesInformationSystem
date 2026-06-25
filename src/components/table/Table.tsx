@@ -9,6 +9,7 @@ import { formatAutomatic } from '@utils/formatAutomatic';
 import { formatInitialValues } from '@utils/formatInitialValues';
 import { formatAddress } from '@utils/formatAddress';
 import { getMeterTypeKey } from '@utils/getMeterTypeKey';
+import { Pagination } from '../Pagination';
 
 import iconGvs from '@assets/Icon-gvs.svg';
 import iconHvs from '@assets/Icon-hvs.svg';
@@ -21,7 +22,6 @@ const Table = observer(() => {
     meterStore.init();
   }, []);
 
-
   if (meterStore.loading && !meterStore.meters.length) {
     return <p className="table-status">Загрузка...</p>;
   }
@@ -32,16 +32,16 @@ const Table = observer(() => {
     );
   }
 
-  return (
-    <div className="table-container" >
-      {
-        meterStore.error && (
-          <p className="table-status table-status--error">{meterStore.error}</p>
-        )
-      }
+  console.log(iconHvs);
 
-      <div className="scroll-wrapper" >
-        <table className="table" >
+  return (
+    <div className="table-container">
+      {meterStore.error && (
+        <p className="table-status table-status--error">{meterStore.error}</p>
+      )}
+
+      <div className="scroll-wrapper">
+        <table className="table">
           <TableHead />
           <tbody className="table__body">
             {meterStore.meters.map((item, index) => {
@@ -86,7 +86,7 @@ const Table = observer(() => {
                     {formatInitialValues(item.initial_values)}
                   </td>
                   <td className="table__data">{formatAddress(area)}</td>
-                  <td className="table__data">1 подезд, подвал</td>
+                  <td className="table__data">Подвал, парадная 1</td>
                   <td className="table__data table__data--actions">
                     <button
                       type="button"
@@ -95,16 +95,22 @@ const Table = observer(() => {
                       disabled={meterStore.deletingId === item.id}
                       onClick={() => meterStore.removeMeter(item.id)}
                     >
-                      <img src={trashIcon} width={20} height={20} alt="иконка" />
+                      <img
+                        src={trashIcon}
+                        width={20}
+                        height={20}
+                        alt="иконка"
+                      />
                     </button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
-        </table >
-      </div >
-    </div >
+        </table>
+      </div>
+      <Pagination />
+    </div>
   );
 });
 
