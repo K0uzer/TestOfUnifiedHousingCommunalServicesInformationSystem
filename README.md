@@ -21,8 +21,7 @@
 Выводить улицу, дом, номер квартиры.
 3. Удаление счётчика.
 При наведении на строку должна появляться кнопка удаления, инициирующая
-удаление счётчика (DELETE
-http://showroom.eis24.me/c300/api/v4/test/meters/:meterId/). На странице при этом
+удаление счётчика. На странице при этом
 всегда должно оставаться 20 элементов.
 Стек технологий:
 Использовать React, TypeScript, mobx-state-tree — обязательно,
@@ -35,4 +34,3 @@ singleQuote: true
 printWidth: 80
 Проект выложить на github.
 
-https://www.figma.com/design/gxVXNv5MEY8RQ1KXRVvkUT/Frontend-Developer--Тестовое-задание-?node-id=1-1654&t=BUByl39aR43Y3RrF-0
