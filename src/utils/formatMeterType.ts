@@ -1,4 +1,4 @@
-import { METER_TYPE_LABELS } from "../Constans";
+import { METER_TYPE_LABELS } from "../constans";
 
 export function formatMeterType(types: string[]): string {
     for (const type of types) {
