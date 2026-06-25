@@ -16,5 +16,10 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './src/utils'),
     }
   },
-  plugins: [react(), svgr()],
+  plugins: [
+    react(),
+    svgr({
+      include: '**/*.svg?react',
+    }),
+  ],
 });
