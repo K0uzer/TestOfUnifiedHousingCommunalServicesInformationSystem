@@ -1,13 +1,20 @@
-import { observer } from 'mobx-react-lite';
-import { meterStore } from '@store/meterStore';
-import './Table.scss';
-import { TableHead } from './TableHead';
 import { useEffect } from 'react';
-import { formatAddress, formatAutomatic, formatDate, formatInitialValues, formatMeterType, getMeterTypeKey } from '../../utils/format';
+import { observer } from 'mobx-react-lite';
+
+import { TableHead } from './TableHead';
+import { meterStore } from '@store/meterStore';
+import { formatMeterType } from '@utils/formatMeterType';
+import { formatDate } from '@utils/formatDate';
+import { formatAutomatic } from '@utils/formatAutomatic';
+import { formatInitialValues } from '@utils/formatInitialValues';
+import { formatAddress } from '@utils/formatAddress';
+import { getMeterTypeKey } from '@utils/getMeterTypeKey';
+
 import iconGvs from '@assets/Icon-gvs.svg';
 import iconHvs from '@assets/Icon-hvs.svg';
 import trashIcon from '@assets/trash.svg';
 
+import './Table.scss';
 
 const Table = observer(() => {
   useEffect(() => {
@@ -42,8 +49,6 @@ const Table = observer(() => {
               const area = meterStore.getArea(item.area.id);
               const rowNumber =
                 meterStore.page * meterStore.pageSize + index + 1;
-
-              console.log(typeKey)
 
               return (
                 <tr className="table__row" key={item.id}>
