@@ -1,2 +1,2 @@
-export { Table } from './Table';
+export { Table } from './table/Table';
 export { Pagination } from './Pagination';
