@@ -1,5 +1,5 @@
 import { TABLE_COLUMNS } from '@constans';
-import { getTableHeaderClass } from '../../utils/tableColumns';
+import { getTableHeaderClass } from '@utils/tableColumns';
 import './TableHead.scss';
 
 const TableHead = () => {
