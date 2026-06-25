@@ -1,0 +1,14 @@
+@use 'tokens' as *;
+
+:root {
+  --color-white: #{$color-white};
+  --color-gray-25: #{$color-gray-25};
+  --color-gray-50: #{$color-gray-50};
+  --color-gray-150: #{$color-gray-150};
+  --color-gray-500: #{$color-gray-500};
+  --color-gray-600: #{$color-gray-600};
+  --color-gray-900: #{$color-gray-900};
+  --color-red-100: #{$color-red-100};
+  --color-red-500: #{$color-red-500};
+  --color-transparent: #{$color-transparent};
+}
