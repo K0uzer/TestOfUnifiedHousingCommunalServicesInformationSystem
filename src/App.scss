@@ -1,0 +1,12 @@
+.app {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: rem(24) rem(16) rem(40);
+}
+
+.app__title {
+  margin: 0 0 rem(20);
+  font-size: rem(24);
+  font-weight: 600;
+  color: $color-gray-900;
+}

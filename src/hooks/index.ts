@@ -1,1 +1,0 @@
-export { useGetContent } from './useGetContent';

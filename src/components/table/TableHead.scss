@@ -1,0 +1,30 @@
+.table__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: rem(12) rem(10);
+  text-align: left;
+  font-weight: 500;
+  font-size: rem(13);
+  line-height: rem(16);
+  color: $color-gray-500;
+  background: $color-gray-25;
+  border-bottom: 1px solid $color-gray-150;
+  white-space: nowrap;
+
+  &--actions {
+    padding-inline: rem(4);
+  }
+}
+
+.table__row {
+  &:hover {
+    background-color: $color-gray-25;
+    cursor: pointer;
+
+    .table__delete {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}

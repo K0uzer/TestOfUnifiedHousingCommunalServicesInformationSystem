@@ -1,13 +1,12 @@
-import './App.css';
+import './App.scss';
 import { Table } from './components';
 
 function App() {
   return (
-    <section>
-      <h1>Список счетчиков</h1>
-
+    <main className="app">
+      <h1 className="app__title">Список счётчиков</h1>
       <Table />
-    </section>
+    </main>
   );
 }
 
