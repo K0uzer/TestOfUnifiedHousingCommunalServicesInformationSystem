@@ -106,15 +106,27 @@
   background: $color-transparent;
   color: $color-red-500;
   cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
+  pointer-events: auto;
   transition:
     opacity 0.15s ease,
     background-color 0.15s ease,
     color 0.15s ease;
 
+  @media (hover: hover) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .table__row:hover & {
     background: $color-red-100;
+  }
+
+  @media (hover: hover) {
+    .table__row:hover & {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   .table__row:hover &--pressed:not(:disabled) {
@@ -124,6 +136,7 @@
   &:disabled {
     cursor: wait;
     opacity: 0.5;
+    pointer-events: none;
   }
 }
 
