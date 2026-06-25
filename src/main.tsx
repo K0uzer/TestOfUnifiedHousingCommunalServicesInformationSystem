@@ -2,10 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.scss';
 import App from './App.tsx';
-import ProviderComponent from './store/Provider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ProviderComponent children={<App />} />
-  </StrictMode>
+    <App />
+  </StrictMode>,
 );
