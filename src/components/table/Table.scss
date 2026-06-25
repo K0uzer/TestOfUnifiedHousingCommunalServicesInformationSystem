@@ -1,45 +1,90 @@
 .table-container {
-  border: 1px solid #dfe3e8;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid $color-gray-150;
+  border-radius: rem(8);
+  background: $color-white;
 }
 
 .scroll-wrapper {
-  max-height: 520px;
+  max-height: rem(520);
   overflow: auto;
 }
 
 .table {
   width: 100%;
+  min-width: rem(960);
   border-collapse: collapse;
   table-layout: fixed;
 }
 
+.table__col {
+  &--number {
+    width: rem(56);
+  }
+
+  &--type {
+    width: rem(80);
+  }
+
+  &--date {
+    width: rem(128);
+  }
+
+  &--automatic {
+    width: rem(120);
+  }
+
+  &--readings {
+    width: rem(144);
+  }
+
+  &--note {
+    width: rem(180);
+  }
+
+  &--actions {
+    width: rem(48);
+  }
+}
+
 .table-status {
-  margin: 0 0 12px;
-  padding: 12px 16px;
+  margin: 0 0 rem(12);
+  padding: rem(12) rem(16);
 
   &--error {
-    color: #f21b1b;
+    color: $color-red-500;
   }
 }
 
 .table__data {
-  padding: 10px;
-  border-bottom: 1px solid #f0f3f6;
+  padding: rem(10);
+  border-bottom: 1px solid $color-gray-150;
   vertical-align: middle;
   word-break: break-word;
-}
+  color: $color-gray-600;
 
-.table__data--actions {
-  width: 48px;
-  text-align: center;
+  &--number,
+  &--type,
+  &--date,
+  &--automatic,
+  &--readings {
+    white-space: nowrap;
+  }
+
+  &--number,
+  &--readings {
+    font-variant-numeric: tabular-nums;
+  }
+
+  &--actions {
+    padding-inline: rem(4);
+    text-align: center;
+  }
 }
 
 .table__type {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: rem(6);
 }
 
 .table__type-icon {
@@ -50,19 +95,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  padding: rem(4);
   border: none;
-  border-radius: 4px;
-  background: transparent;
-  color: #757987;
+  border-radius: rem(4);
+  background: $color-transparent;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
 
   &:hover:not(:disabled) {
-    background: #fde8e8;
-    color: #f21b1b;
+    background: $color-red-100;
   }
 
   &:disabled {

@@ -1,26 +1,29 @@
 .table__header {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    padding: 12px 10px;
-    text-align: left;
-    font-weight: 600;
-    background: #f2f5f8;
-    border-bottom: 1px solid #dfe3e8;
-    white-space: nowrap;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: rem(12) rem(10);
+  text-align: left;
+  font-weight: 600;
+  color: $color-gray-500;
+  background: $color-gray-25;
+  border-bottom: 1px solid $color-gray-150;
+  white-space: nowrap;
 
-  .table__row {
-    &:hover {
-      background-color: #e8f2ff;
-  
-      .table__delete {
-        opacity: 1;
-        pointer-events: auto;
-      }
+  &--actions {
+    padding-inline: rem(4);
+  }
+}
+
+.table__row {
+  &:hover {
+    background-color: $color-gray-25;
+    cursor: pointer;
+    
+    .table__delete {
+      opacity: 1;
+      pointer-events: auto;
+      background: $color-red-100;
     }
   }
-
-  .table__header--actions {
-    width: 48px;
-  }
+}
