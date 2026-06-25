@@ -14,3 +14,13 @@ export const METER_TYPE_LABELS: Record<string, string> = {
 };
 
 export const MAX_VISIBLE_PAGES = 7;
+
+export const TABLE_COLUMNS = [
+  { key: 'number', label: '№' },
+  { key: 'type', label: 'Тип' },
+  { key: 'date', label: 'Дата установки' },
+  { key: 'automatic', label: 'Автоматический' },
+  { key: 'readings', label: 'Текущие показания' },
+  { key: 'address', label: 'Адрес' },
+  { key: 'note', label: 'Примечание' },
+] as const;

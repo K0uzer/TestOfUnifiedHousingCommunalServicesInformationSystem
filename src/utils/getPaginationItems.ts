@@ -1,4 +1,4 @@
-import { MAX_VISIBLE_PAGES } from '../Constans';
+import { MAX_VISIBLE_PAGES } from '@constans';
 
 export type PaginationItem = number | 'ellipsis';
 

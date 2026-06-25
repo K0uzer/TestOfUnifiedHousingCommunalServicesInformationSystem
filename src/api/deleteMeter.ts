@@ -1,4 +1,4 @@
-import { METERS_URL } from '../constans';
+import { METERS_URL } from '@constans';
 
 export async function deleteMeter(
   meterId: string,

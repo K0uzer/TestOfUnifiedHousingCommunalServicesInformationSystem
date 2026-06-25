@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { deleteMeter, fetchAreasByIds, fetchMeters } from '../api';
-import { PAGE_SIZE } from '../constans';
+import { PAGE_SIZE } from '@constans';
 import type { Area, Meter } from '../types';
 
 class MeterStore {

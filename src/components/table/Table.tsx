@@ -10,6 +10,8 @@ import { formatInitialValues } from '@utils/formatInitialValues';
 import { formatAddress } from '@utils/formatAddress';
 import { getMeterTypeKey } from '@utils/getMeterTypeKey';
 import { Pagination } from '../Pagination';
+import { getTableColClass, getTableDataClass } from '@utils/tableColumns';
+import { TABLE_COLUMNS } from '@constans';
 
 import iconGvs from '@assets/Icon-gvs.svg?url';
 import iconHvs from '@assets/Icon-hvs.svg?url';
@@ -34,12 +36,14 @@ const Table = observer(() => {
 
   return (
     <div className="table-container">
-      {meterStore.error && (
-        <p className="table-status table-status--error">{meterStore.error}</p>
-      )}
-
       <div className="scroll-wrapper">
         <table className="table">
+          <colgroup>
+            {TABLE_COLUMNS.map(({ key }) => (
+              <col key={key} className={getTableColClass(key)} />
+            ))}
+            <col className={getTableColClass('actions')} />
+          </colgroup>
           <TableHead />
           <tbody className="table__body">
             {meterStore.meters.map((item, index) => {
@@ -50,8 +54,10 @@ const Table = observer(() => {
 
               return (
                 <tr className="table__row" key={item.id}>
-                  <td className="table__data">{rowNumber}</td>
-                  <td className="table__data">
+                  <td className={`table__data ${getTableDataClass('number')}`}>
+                    {rowNumber}
+                  </td>
+                  <td className={`table__data ${getTableDataClass('type')}`}>
                     <span className="table__type">
                       {typeKey === 'hvs' && (
                         <img
@@ -74,18 +80,26 @@ const Table = observer(() => {
                       {formatMeterType(item._type)}
                     </span>
                   </td>
-                  <td className="table__data">
+                  <td className={`table__data ${getTableDataClass('date')}`}>
                     {formatDate(item.installation_date)}
                   </td>
-                  <td className="table__data">
+                  <td
+                    className={`table__data ${getTableDataClass('automatic')}`}
+                  >
                     {formatAutomatic(item.is_automatic)}
                   </td>
-                  <td className="table__data">
+                  <td
+                    className={`table__data ${getTableDataClass('readings')}`}
+                  >
                     {formatInitialValues(item.initial_values)}
                   </td>
-                  <td className="table__data">{formatAddress(area)}</td>
-                  <td className="table__data">Подвал, парадная 1</td>
-                  <td className="table__data table__data--actions">
+                  <td className={`table__data ${getTableDataClass('address')}`}>
+                    {formatAddress(area)}
+                  </td>
+                  <td className={`table__data ${getTableDataClass('note')}`}>
+                    Подвал, парадная 1
+                  </td>
+                  <td className={`table__data ${getTableDataClass('actions')}`}>
                     <button
                       type="button"
                       className="table__delete"
@@ -95,8 +109,8 @@ const Table = observer(() => {
                     >
                       <img
                         src={trashIcon}
-                        width={20}
-                        height={20}
+                        width={13}
+                        height={14}
                         alt="иконка"
                       />
                     </button>

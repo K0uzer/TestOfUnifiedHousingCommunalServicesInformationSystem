@@ -1,4 +1,4 @@
-import { AREAS_URL } from '../constans';
+import { AREAS_URL } from '@constans';
 import type { Area, PaginatedResponse } from '../types';
 
 export async function fetchAreasByIds(
