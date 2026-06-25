@@ -16,6 +16,19 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@constans": ["src/Constans/index.ts"],
+      "@constans/*": ["src/Constans/*"],
+      "@store/*": ["src/store/*"],
+      "@stypes/*": ["src/stypes/*"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["src", "src/vite-env.d.ts"]
 }
