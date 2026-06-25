@@ -13,6 +13,7 @@ class MeterStore {
   error: string | null = null;
   private areasCache = new Map<string, Area>();
   private abortController: AbortController | null = null;
+  private loadRequestId = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -43,9 +44,12 @@ class MeterStore {
     this.abortController?.abort();
     this.abortController = new AbortController();
     const { signal } = this.abortController;
+    const requestId = ++this.loadRequestId;
 
-    this.loading = true;
-    this.error = null;
+    runInAction(() => {
+      this.loading = true;
+      this.error = null;
+    });
 
     try {
       const offset = this.page * this.pageSize;
@@ -64,14 +68,22 @@ class MeterStore {
         meters = [...meters, ...additional.results];
       }
 
+      if (requestId !== this.loadRequestId) {
+        return;
+      }
+
       runInAction(() => {
         this.meters = meters;
         this.totalCount = response.count;
       });
 
-      await this.loadAreasForMeters(meters, signal);
+      await this.loadAreasForMeters(meters, signal, requestId);
     } catch (error) {
       if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
+      }
+
+      if (requestId !== this.loadRequestId) {
         return;
       }
 
@@ -80,15 +92,18 @@ class MeterStore {
           error instanceof Error ? error.message : 'Не удалось загрузить данные';
       });
     } finally {
-      runInAction(() => {
-        this.loading = false;
-      });
+      if (requestId === this.loadRequestId) {
+        runInAction(() => {
+          this.loading = false;
+        });
+      }
     }
   }
 
   private async loadAreasForMeters(
     meters: Meter[],
     signal?: AbortSignal,
+    requestId?: number,
   ): Promise<void> {
     const unknownIds = [
       ...new Set(
@@ -102,10 +117,14 @@ class MeterStore {
       return;
     }
 
-    const response = await fetchAreasByIds(unknownIds, signal);
+    const areas = await fetchAreasByIds(unknownIds, signal);
+
+    if (requestId !== undefined && requestId !== this.loadRequestId) {
+      return;
+    }
 
     runInAction(() => {
-      for (const area of response.results) {
+      for (const area of areas) {
         this.areasCache.set(area.id, area);
       }
     });
@@ -122,13 +141,14 @@ class MeterStore {
     try {
       await deleteMeter(meterId);
 
-      runInAction(() => {
-        this.totalCount = Math.max(0, this.totalCount - 1);
+      const isLastItemOnPage = this.meters.length === 1;
+      const isLastPage = this.page === this.totalPages - 1;
 
-        if (this.page >= this.totalPages) {
-          this.page = Math.max(0, this.totalPages - 1);
-        }
-      });
+      if (isLastItemOnPage && isLastPage && this.page > 0) {
+        runInAction(() => {
+          this.page -= 1;
+        });
+      }
 
       await this.loadMeters();
     } catch (error) {
