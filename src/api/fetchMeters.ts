@@ -1,4 +1,4 @@
-import { METERS_URL } from '../Constans';
+import { METERS_URL } from '../constans';
 import type { Meter, PaginatedResponse } from '../types';
 
 export async function fetchMeters(
