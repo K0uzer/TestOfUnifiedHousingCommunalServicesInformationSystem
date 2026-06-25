@@ -1,18 +1,18 @@
 import { observer } from 'mobx-react-lite';
-import { meterStore } from '../store/meterStore';
+import { meterStore } from '@store/meterStore';
 import './Pagination.scss';
 
 const Pagination = observer(() => {
-  const canGoPrev = meterStore.page > 0;
-  const canGoNext = meterStore.page < meterStore.totalPages - 1;
+  const prevPage = meterStore.page > 0;
+  const nextPage = meterStore.page < meterStore.totalPages - 1;
 
   return (
     <nav className="pagination" aria-label="Навигация по страницам">
       <button
         type="button"
         className="pagination__button"
-        disabled={!canGoPrev || meterStore.loading}
-        onClick={() => void meterStore.setPage(meterStore.page - 1)}
+        disabled={!prevPage || meterStore.loading}
+        onClick={() => meterStore.setPage(meterStore.page - 1)}
       >
         Назад
       </button>
@@ -24,8 +24,8 @@ const Pagination = observer(() => {
       <button
         type="button"
         className="pagination__button"
-        disabled={!canGoNext || meterStore.loading}
-        onClick={() => void meterStore.setPage(meterStore.page + 1)}
+        disabled={!nextPage || meterStore.loading}
+        onClick={() => meterStore.setPage(meterStore.page + 1)}
       >
         Вперёд
       </button>
