@@ -99,16 +99,15 @@ const Table = observer(() => {
                     {formatAddress(area)}
                   </td>
                   <td className={`table__data ${getTableDataClass('note')}`}>
-                    Подвал, парадная 1
+                    {item.description}
                   </td>
                   <td className={`table__data ${getTableDataClass('actions')}`}>
                     <button
                       type="button"
-                      className={`table__delete${
-                        pressedDeleteId === item.id
-                          ? ' table__delete--pressed'
-                          : ''
-                      }`}
+                      className={`table__delete${pressedDeleteId === item.id
+                        ? ' table__delete--pressed'
+                        : ''
+                        }`}
                       aria-label="Удалить счётчик"
                       disabled={meterStore.deletingId === item.id}
                       onPointerDown={() => setPressedDeleteId(item.id)}
